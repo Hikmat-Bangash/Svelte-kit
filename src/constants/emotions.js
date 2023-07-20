@@ -1,0 +1,18 @@
+export let emotions = [
+  "Proud",
+  "Angry",
+  "Amused",
+  "Bored",
+  "Hopeful",
+  "Disgusted",
+  "Surprised",
+  "Relieved",
+  "Moved",
+  "Inspired",
+  "Uncomfortable",
+  "Frustrated",
+  "Happy",
+  "Sad",
+  "Anxious",
+  "Afraid",
+];
