@@ -27,7 +27,7 @@
               <p class="text-[#8a6d3b] text-[17px]">{HomeScreen.MESSAGE}</p>
               <a
                 href="/ad?assignmentId=debugRuNdu&hitId=debugOr0wK&workerId=debug0SdjT&mode=debug"
-                class="ml-1 text-blue-600 font-semibold underline"
+                class="ml-1 text-blue-600 font-semibold hover:underline"
                 >{HomeScreen.ANCHAR_TAG}</a
               >.
             </div>
