@@ -36,7 +36,7 @@ export const FirstScreen = {
     " The information collected will be anonymous and no identifying information will be stored with the data collected during the experiment. Identifying information will not be used in any presentation or paper written about this project and such presentations will represent the aggregation of data from groups of people",
   PRINT_BUTTON: "Print a copy of this",
     QUESTION: "Do you understand and consent to these terms?",
-  AGREE_BUTTON: "| agree",
+  AGREE_BUTTON: "I agree",
     DISAPPROVE_BUTTON: "🚫 No thanks, I do not want to do this HIT",
 };
 
