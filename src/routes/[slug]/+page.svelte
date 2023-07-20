@@ -8,7 +8,7 @@
     const windowFeatures = `width=${customWidth},height=${window.innerHeight + 80},left=0,top=0`;
 
     window.open(
-      "http://localhost:5173/consent?hitId=debugOr0wK&assignmentId=debugRuNdu&workerId=debug0SdjT&mode=debug",
+      "/consent?hitId=debugOr0wK&assignmentId=debugRuNdu&workerId=debug0SdjT&mode=debug",
       "popupWindow",
       windowFeatures
     );
