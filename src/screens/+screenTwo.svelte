@@ -32,7 +32,7 @@
     <p class="flex-wrap text-center">
       {SecondScreen.INFORMATION} (<a
         href="mailto:cosanlab@gmail.com"
-        class="text-blue-600 hover:text-blue-800">{SecondScreen.EMAIL}</a
+        class="text-blue-600 hover:text-blue-800 underline">{SecondScreen.EMAIL}</a
       >), and <span class="font-bold"> {SecondScreen.EMPHASIS_MESSAGE}</span>
     </p>
 

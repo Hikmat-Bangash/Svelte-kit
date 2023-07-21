@@ -1,8 +1,10 @@
 <script>
   import logo from "../assets/logo.png";
   import "@fontsource/roboto";
-  import { HomeScreen } from "../constants/constants";
+  
 </script>
+
+
 
 <!--  -->
 <div class="container w-full h-full mt-8 ml-2 md:ml-6">
@@ -12,7 +14,7 @@
     </div>
 
     <div class="right w-[85%] h-auto flex flex-col gap-5">
-      <h1 class="text-4xl">{HomeScreen.TITLE}</h1>
+      <h1 class="text-4xl">Debugging task complete!</h1>
       <hr />
       <div class="container mx-auto">
         <!-- Section: Design Block -->
@@ -24,12 +26,8 @@
               class="mb-4 flex flex-wrap items-center justify-center md:mb-0 md:justify-start"
             >
               <!-- svelte-ignore a11y-missing-attribute -->
-              <p class="text-[#8a6d3b] text-[17px]">{HomeScreen.MESSAGE}</p>
-              <a
-                href="/ad?assignmentId=debugRuNdu&hitId=debugOr0wK&workerId=debug0SdjT&mode=debug"
-                class="ml-1 text-blue-500 font-semibold hover:text-blue-700 hover:underline"
-                >{HomeScreen.ANCHAR_TAG}</a
-              >.
+              <p class="text-[#8a6d3b] text-[17px]">If this was the real the hit, the data would be saved now and the HIT sunmitted to AMT.</p>
+             
             </div>
           </div>
         </section>

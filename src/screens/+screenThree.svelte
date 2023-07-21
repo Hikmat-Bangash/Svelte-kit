@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { currentPageNumber, randomNumber } from "../lib/pageSteps";
+  import { currentPageNumber, randomNumber, trialTimes } from "../lib/pageSteps";
   import { ThirdScreen } from "../constants/constants";
   //---- function method to triggered next page whenever user click on continue button
   const NextPageHandler = () => {
@@ -8,7 +8,8 @@
   };
 
   let randomWord = ""; // Variable to store the random word
-
+  let trial_Times = 0;
+ 
   // Function to generate a random five-character word
   function generateRandomWord() {
     const characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -22,8 +23,19 @@
 
   // Use onMount to call the generateRandomWord function and assign to global variable when the component is mounted
   onMount(() => {
+    trialTimes.subscribe((value) => {
+      trial_Times = value;
+    });
+    if(trial_Times > 0){
+    randomNumber.subscribe((value) => {
+    randomWord = value;
+    });
+    }
+    // condition 
+    if(trial_Times == 0){
     randomWord = generateRandomWord().toLowerCase();
     randomNumber.set(randomWord);
+    }
   });
 </script>
 
@@ -37,7 +49,7 @@
     <p class="flex-wrap text-center">{ThirdScreen.WARNING_MESSAGE}</p>
 
     <p class="flex-wrap text-center">
-      Please enter the word <b class="uppercase">{randomWord}</b> in lowercase letters
+      Please enter the word <b class="uppercase">{randomWord }</b> in lowercase letters
       to Box1.
     </p>
 

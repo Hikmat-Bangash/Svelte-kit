@@ -3,9 +3,11 @@
   import "@fontsource/roboto";
   import { SecondPage } from "../../constants/constants";
 
- const openNewWindow = () => {
+  const openNewWindow = () => {
     const customWidth = 1100; // Set your desired custom width here
-    const windowFeatures = `width=${customWidth},height=${window.innerHeight + 80},left=0,top=0`;
+    const windowFeatures = `width=${customWidth},height=${
+      window.innerHeight + 80
+    },left=0,top=0`;
 
     window.open(
       "/consent?hitId=debugOr0wK&assignmentId=debugRuNdu&workerId=debug0SdjT&mode=debug",
@@ -17,8 +19,14 @@
 
 <div class="container w-full h-full mt-8 ml-2 md:ml-6">
   <div class="wrapper w-full mx-3 flex gap-6 h-auto overflow-x-hidden">
-   <div class="left w-[150px] xl:h-[132px] h-[129px] border border-gray-300 p-[2px]">
-      <img src={logo} class="w-full h-auto min-w-[140px] min-h-[120px]" alt="projectLabPic" />
+    <div
+      class="left w-[150px] xl:h-[132px] h-[129px] border border-gray-300 p-[2px]"
+    >
+      <img
+        src={logo}
+        class="w-full h-auto min-w-[140px] min-h-[120px]"
+        alt="projectLabPic"
+      />
     </div>
 
     <div class="right w-[85%] h-auto flex flex-col gap-2">
@@ -51,11 +59,11 @@
       </div>
       <!-- button -->
       <button
-        class="bg-blue-700 opacity-75 text-white w-40 p-2 rounded-md border hover:bg-blue-800 border-gray-700 text-lg"
+        class="bg-blue-700 opacity-75 text-white w-40 p-2 px-2 text-lg border-2 border-blue-700 rounded-md hover:bg-blue-800  active:border-2 focus:border-2 focus:border-black active:border-black "
         on:click={openNewWindow}
       >
-        {SecondPage.BUTTON}</button
-      >
+        {SecondPage.BUTTON}
+      </button>
     </div>
   </div>
 </div>

@@ -14,6 +14,10 @@
   import ScreenEight from "../../screens/+screenEight.svelte";
   import ScreenNine from "../../screens/+screenNine.svelte";
   import ScreenTen from "../../screens/+screenTen.svelte";
+  import ScreenEleven from "../../screens/+screenEleven.svelte";
+  import ScreenTweleve from "../../screens/+screenTweleve.svelte";
+  import ScreenThirteen from "../../screens/+screenThirteen.svelte";
+  import ScreenFourteen from "../../screens/screenFourteen.svelte";
 
   let currentPage;
 // function definition to change the document title
@@ -49,4 +53,12 @@ const ChangeTitle = () =>{
   <ScreenNine />
 {:else if currentPage === 9}
   <ScreenTen />
+  {:else if currentPage === 10}
+  <ScreenEleven />
+  {:else if currentPage === 11}
+  <ScreenTweleve />
+   {:else if currentPage === 12}
+  <ScreenThirteen />
+    {:else if currentPage === 13}
+  <ScreenFourteen />
 {/if}

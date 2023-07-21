@@ -47,7 +47,7 @@
           {FirstScreen.CONTENT4}
           <a
             href="mailto:cosanlab@gmail.com"
-            class="text-blue-600 hover:text-blue-800">{FirstScreen.EMAIL}</a
+            class="text-blue-600 hover:text-blue-800 hover:underline">{FirstScreen.EMAIL}</a
           >
         </p>
 
@@ -58,7 +58,7 @@
       <!-- print as a copy in pdf -->
       <button
         on:click={() => window.print()}
-        class="printbtn flex gap-1 justify-center items-center p-1 border border-gray-400 w-36 bg-white text-[12px] mt-2 rounded-sm hover:bg-gray-200"
+        class="printbtn flex gap-1 justify-center items-center p-1 border border-gray-400 w-36 bg-white text-[12px] mt-2 rounded-sm hover:bg-gray-200 active:border-2 focus:border-2 focus:border-black active:border-black"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
       <!-- buttons -->
       <div class="buttons flex justify-around mx-8 mt-3 mb-2 text-[20px]">
         <button
-          class="p-1 px-2 pb-2 bg-blue-500 flex justify-center items-center text-white border-2 text-center border-blue-500 opacity-80 hover:opacity-100 rounded-md"
+          class="p-1 px-2 pb-2 bg-blue-500 flex justify-center items-center text-white border-2 text-center border-blue-500 opacity-80 hover:opacity-100 rounded-md active:border-2 focus:border-2 focus:border-black active:border-black"
           on:click={NextPageHandler}
         >
           <svg
@@ -106,7 +106,7 @@
         >
         <!-- second button -->
         <button
-          class="p-1 px-2 bg-red-600 flex justify-center items-center text-white border-2 border-red-600 opacity-80 hover:opacity-100 rounded-md"
+          class="p-1 px-2 bg-red-600 flex justify-center items-center text-white border-2 border-red-600 opacity-80 hover:opacity-100 rounded-md active:border-2 focus:border-2 focus:border-black active:border-black"
           on:click={() => window.close()}
           >{FirstScreen.DISAPPROVE_BUTTON}</button
         >
