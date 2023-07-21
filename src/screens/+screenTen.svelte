@@ -36,7 +36,14 @@
   function updateTime() {
     const video = document.querySelector("video");
     if (video) {
-      videoCurrentTime = video.currentTime.toFixed(1); // Get the current time of the video in seconds
+      videoCurrentTime = video.currentTime; // Get the current time of the video in seconds
+      // Check if the video has reached its end
+    if (videoCurrentTime === videoDuration) {
+      currentPageNumber.set(10);
+    }
+    if (videoCurrentTime >= 19.5 && videoCurrentTime <= 20) {
+  currentPageNumber.set(10);
+}
     }
   }
   
