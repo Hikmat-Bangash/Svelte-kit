@@ -13,11 +13,14 @@
     if (!clickedDivs[index]) {
       const mouseX =
         event.clientX - event.currentTarget.getBoundingClientRect().left;
-      fillWidths[index] = Math.floor(mouseX);
+      const divWidth = event.currentTarget.clientWidth;
+      fillWidths[index] = Math.floor((mouseX / divWidth) * 100);
       // Set the "None" div background to white on mousemove
       clickedDivs[emotions.length] = true;
     }
   }
+
+  
 
   // Function to handle mouse out for a specific div with a delay
   function handleMouseOut(index) {
@@ -60,7 +63,7 @@
 <div class="container w-full h-full flex justify-center items-center">
   <div class="wrapper mt-10 flex justify-center flex-col gap-1">
     <div class="instruction mb-3 text-[19px]">
-      Please rate the emotions as instructed by video:
+      Please rate the emotions as instructed by the video:
     </div>
     <!-- Your existing code for emotion_tabs -->
     {#each emotions as emotion, index}
@@ -85,8 +88,8 @@
           on:click={() => handleDivClick(index)}
         >
           <div
-            class="fill absolute top-0 left-0 bg-[#ff816d] h-full"
-            style={`width: ${fillWidths[index]}px`}
+            class="fill absolute top-0 left-0 w-full h-full bg-[#ff816d]"
+            style={`width: ${fillWidths[index]}%; transition: width 0.2s ease;`}
           />
         </div>
         <div class="emotion_name flex justify-start ml-1" />
@@ -99,4 +102,7 @@
 </div>
 
 <style>
+  .emotion_tab {
+    min-width: 450px;
+  }
 </style>

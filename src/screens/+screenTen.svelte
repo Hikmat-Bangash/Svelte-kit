@@ -7,7 +7,6 @@
   let videoDuration = 0;
   let videoCurrentTime = 0;
 
-
   // Function to handle the visibility change event
   function handleVisibilityChange() {
     if (document.hidden) {
@@ -17,7 +16,10 @@
         window.alert(
           "To complete this trial, all videos must remain visible and audible."
         );
-        document.removeEventListener("visibilitychange", handleVisibilityChange);
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
       }
     }
   }
@@ -38,15 +40,14 @@
     if (video) {
       videoCurrentTime = video.currentTime; // Get the current time of the video in seconds
       // Check if the video has reached its end
-    if (videoCurrentTime === videoDuration) {
-      currentPageNumber.set(10);
-    }
-    if (videoCurrentTime >= 19.5 && videoCurrentTime <= 20) {
-  currentPageNumber.set(10);
-}
+      if (videoCurrentTime === videoDuration) {
+        currentPageNumber.set(10);
+      }
+      if (videoCurrentTime >= 19.5 && videoCurrentTime <= 20) {
+        currentPageNumber.set(10);
+      }
     }
   }
-  
 
   onMount(() => {
     handleMetadataLoaded();
@@ -64,13 +65,17 @@
   });
 </script>
 
-
-<div class="container w-full h-screen flex flex-col gap-4 justify-center items-center">
+<div
+  class="container w-full h-screen flex flex-col gap-4 justify-center items-center"
+>
   <div class="wrapper w-[40rem] h-[25rem] bg-black border border-gray-700">
     <!-- svelte-ignore a11y-media-has-caption -->
-    <video autoplay class="w-full h-full" on:loadedmetadata={handleMetadataLoaded}>
+    <video
+      autoplay
+      class="w-full h-full"
+      on:loadedmetadata={handleMetadataLoaded}
+    >
       <source src={videoUrl} type="video/mp4" />
     </video>
-
   </div>
 </div>
