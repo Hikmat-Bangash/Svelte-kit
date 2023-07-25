@@ -4,27 +4,26 @@
   import { currentPageNumber } from "../../lib/pageSteps";
   import { onMount } from "svelte";
 
-  import ScreenOne from "../../screens/+screenOne.svelte";
-  import ScreenThree from "../../screens/+screenThree.svelte";
-  import ScreenTwo from "../../screens/+screenTwo.svelte";
-  import StepFour from "../../screens/+stepFour.svelte";
-  import ScreenFive from "../../screens/+screenFive.svelte";
-  import ScreenSix from "../../screens/+screenSix.svelte";
+  import ScreenOne from "../../screens/screenOne.svelte";
+  import ScreenThree from "../../screens/screenThree.svelte";
+  import ScreenTwo from "../../screens/screenTwo.svelte";
+  import StepFour from "../../screens/stepFour.svelte";
+  import ScreenFive from "../../screens/screenFive.svelte";
+  import ScreenSix from "../../screens/screenSix.svelte";
   import HumanVerificatin from "../../screens/HumanVerificatin.svelte";
-  import ScreenEight from "../../screens/+screenEight.svelte";
-  import ScreenNine from "../../screens/+screenNine.svelte";
-  import ScreenTen from "../../screens/+screenTen.svelte";
-  import ScreenEleven from "../../screens/+screenEleven.svelte";
-  import ScreenTweleve from "../../screens/+screenTweleve.svelte";
-  import ScreenThirteen from "../../screens/+screenThirteen.svelte";
+  import ScreenEight from "../../screens/screenEight.svelte";
+  import ScreenNine from "../../screens/screenNine.svelte";
+  import ScreenTen from "../../screens/screenTen.svelte";
+  import ScreenEleven from "../../screens/screenEleven.svelte";
+  import ScreenTweleve from "../../screens/screenTweleve.svelte";
+  import ScreenThirteen from "../../screens/screenThirteen.svelte";
   import ScreenFourteen from "../../screens/screenFourteen.svelte";
 
   let currentPage;
-// function definition to change the document title
-const ChangeTitle = () =>{
-  document.title = "Psychology Experiment - Informed Consent Form"
-
-}
+  // function definition to change the document title
+  const ChangeTitle = () => {
+    document.title = "Psychology Experiment - Informed Consent Form";
+  };
   onMount(() => {
     currentPageNumber.subscribe((value) => {
       currentPage = value;
@@ -34,7 +33,8 @@ const ChangeTitle = () =>{
 </script>
 
 {#if currentPage === 0}
-  <ScreenOne />
+<ScreenTen/>
+  <!-- <ScreenOne /> -->
 {:else if currentPage === 1}
   <ScreenTwo />
 {:else if currentPage === 2}
@@ -53,12 +53,12 @@ const ChangeTitle = () =>{
   <ScreenNine />
 {:else if currentPage === 9}
   <ScreenTen />
-  {:else if currentPage === 10}
+{:else if currentPage === 10}
   <ScreenEleven />
-  {:else if currentPage === 11}
+{:else if currentPage === 11}
   <ScreenTweleve />
-   {:else if currentPage === 12}
+{:else if currentPage === 12}
   <ScreenThirteen />
-    {:else if currentPage === 13}
+{:else if currentPage === 13}
   <ScreenFourteen />
 {/if}

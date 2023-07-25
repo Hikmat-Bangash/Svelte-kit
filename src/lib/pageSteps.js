@@ -5,3 +5,5 @@ import { writable } from "svelte/store";
 export const currentPageNumber = writable(0);
 export const randomNumber = writable("");
 export const trialTimes = writable(0);
+export const videoCurrentStoreTime = writable(0.0);
+export const EmotionScaleModel = writable(false);
