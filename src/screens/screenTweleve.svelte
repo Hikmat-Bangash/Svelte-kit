@@ -7,13 +7,15 @@
 
   // Handle the click event
   const clickHandler = () => {
-      NextPageHandler();
+    NextPageHandler();
   };
 </script>
 
 <!-- CONTENT SECTION -->
 <div class="container w-full h-full flex justify-center items-center">
-  <div class="wrapper flex flex-col gap-7 justify-center items-center text-gray-700">
+  <div
+    class="wrapper flex flex-col gap-7 justify-center items-center text-gray-700"
+  >
     <div class="firstPart mt-2 flex flex-col justify-center items-start gap-1">
       <p>
         Thank you for finishing this video. Before you go, please answer the
@@ -44,9 +46,9 @@
 
     <!-- Your Ethnicity -->
     <div class="center-div flex flex-col justify-center items-center gap-1">
-        <h2 class="flex-wrap text-center font-bold">Your Ethnicity:</h2>
+      <h2 class="flex-wrap text-center font-bold">Your Ethnicity:</h2>
 
-      <p class="flex-wrap text-center  ">
+      <p class="flex-wrap text-center">
         (Please copy and paste one item into the following text box)
       </p>
       <!-- list -->
@@ -65,7 +67,7 @@
     <!-- Your RACE -->
     <div class="center-div flex flex-col justify-center items-center gap-1">
       <h2 class="flex-wrap text-center font-bold">Your Race:</h2>
-      <p class="flex-wrap text-center ">
+      <p class="flex-wrap text-center">
         (Please copy and paste one item into the following text box)
       </p>
       <!-- list -->
@@ -87,10 +89,18 @@
 
     <!-- Feedback section -->
 
-    <div class="feedback-section flex flex-col justify-center items-center gap-3">
+    <div
+      class="feedback-section flex flex-col justify-center items-center gap-3"
+    >
       <p>Feedback on this Task:</p>
       <!-- feedback text area -->
-      <textarea name="feedback" id="feedback" cols="40" rows="4" class="border border-black"/>
+      <textarea
+        name="feedback"
+        id="feedback"
+        cols="40"
+        rows="4"
+        class="border border-black"
+      />
     </div>
     <!-- Continue button -->
     <button
