@@ -62,10 +62,10 @@
         currentPageNumber.set(10);
       }
 
-      // ---- condition for temporary purpose to check the updated deployed --------
-      if (videoElement.currentTime >= 10 && videoElement.currentTime <= 10.3) {
-        currentPageNumber.set(10);
-      }
+      // // ---- condition for temporary purpose to check the updated deployed --------
+      // if (videoElement.currentTime >= 10 && videoElement.currentTime <= 10.3) {
+      //   currentPageNumber.set(10);
+      // }
 
       if (
         (videoElement.currentTime >= 20 &&
