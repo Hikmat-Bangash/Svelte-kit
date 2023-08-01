@@ -13,7 +13,7 @@
   let videoElement; // Reference to the video element
   let timeUpdateListener;
   let iteration = 0;
-   let isVideoPlaying = true;
+  let isVideoPlaying = true;
   // Array to store timestamps for emotion component display
   const emotionTimestamps = [
     { start: 5, end: 5.3 },
@@ -21,7 +21,7 @@
     { start: 41.5, end: 42 },
   ];
 
- function handleVisibilityChange() {
+  function handleVisibilityChange() {
     if (document.hidden) {
       // Pause the video when the page becomes hidden
       const video = document.querySelector("video");
@@ -59,6 +59,11 @@
       $videoCurrentTime = videoElement.currentTime; // Update the videoCurrentTime store
       // Check if the video has reached its end
       if ($videoCurrentTime == videoDuration) {
+        currentPageNumber.set(10);
+      }
+
+      // ---- condition for temporary purpose to check the updated deployed --------
+      if (videoElement.currentTime >= 10 && videoElement.currentTime <= 10.3) {
         currentPageNumber.set(10);
       }
 
@@ -112,7 +117,6 @@
       >
         <source src={videoUrl} type="video/mp4" />
       </video>
-
     </div>
   </div>
 {/if}
