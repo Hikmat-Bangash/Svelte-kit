@@ -2,6 +2,8 @@
   import { currentPageNumber } from "../lib/pageSteps";
   import { db } from "../firebase-config";
   import { addDoc, collection } from "firebase/firestore";
+  import { loading } from "../lib/index";
+
   // temporary variables
   let storySummary = "";
   let dominantEmotion = "";
@@ -15,14 +17,17 @@
 
   // create or store data into firebase
   const createData = async (emtion, story) => {
-    await addDoc(QuestionRef, { dominantEmotion: emtion, storySummary: story })
-      .then(() => {
-        console.log("User added successfully!");
-        alert("Data stored in database");
-      })
-      .catch((error) => {
-        console.error("Error adding user: ", error);
+    loading.set(true);
+    try {
+      await addDoc(QuestionRef, {
+        dominantEmotion: emtion,
+        storySummary: story,
       });
+      loading.set(false);
+    } catch (error) {
+      console.log(error);
+      loading.set(false);
+    }
   };
   // Handle the click event
   const clickHandler = async () => {
@@ -81,8 +86,23 @@
     <!-- Continue button -->
     <button
       on:click={clickHandler}
-      class="py-1 border border-gray-400 text-sm rounded-md px-3 hover:bg-gray-200"
-      >Continue
+      class={`py-1 border border-gray-400 text-sm rounded-md px-3 hover:bg-gray-200 ${
+        $loading && "bg-gray-100 px-8 "
+      }`}
+    >
+      {#if $loading}
+        <div
+          class="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span
+            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+            >Loading...</span
+          >
+        </div>
+      {:else}
+        Continue
+      {/if}
     </button>
   </div>
 </div>

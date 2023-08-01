@@ -2,14 +2,14 @@
   import { currentPageNumber } from "../lib/pageSteps";
   import { addDoc, collection } from "@firebase/firestore";
   import { db } from "../firebase-config";
-
+import { loading } from "../lib/index";
   // collection reference to store data
   const collectionRef = collection(db, "DemographicData");
 
   // ------ form data ---------
   const demographicData = {
     gender: "",
-    age: 0,
+    age: "",
     race: "",
     ethnicity: "",
     feedback: "",
@@ -17,10 +17,13 @@
 
   // store form data into firebase
   const storeData = async () => {
+    loading.set(true);
     try {
       await addDoc(collectionRef, { data: demographicData });
+      loading.set(false);
     } catch (error) {
       console.log(error);
+      loading.set(false);
     }
   };
   // Triggered next page if everything is working correctly
@@ -30,18 +33,20 @@
 
   // Handle the click event
   const clickHandler = async () => {
-    if (demographicData.age < 0) {
-      window.alert("Age cannot be negative");
-      return;
-    }
+
+    // if (demographicData.age < 0) {
+    //   window.alert("Age cannot be negative");
+    //   return;
+    // }
     //If the form is empty
     if (
       !demographicData.race &&
       !demographicData.ethnicity &&
       !demographicData.gender &&
-      !demographicData.feedback
+      !demographicData.feedback &&
+      !demographicData.age
     ) {
-      window.alert("the data is empty");
+      NextPageHandler();
       return;
     }
     // If the form has filled by user then store in the firebase store
@@ -56,7 +61,7 @@
     class="wrapper flex flex-col gap-7 justify-center items-center text-gray-700"
   >
     <div class="firstPart mt-2 flex flex-col justify-center items-start gap-1">
-      <p>
+      <p class="text-center">
         Thank you for finishing this video. Before you go, please answer the
         following question.
       </p>
@@ -80,7 +85,7 @@
       <h2 class="flex-wrap text-center font-bold">Your Age:</h2>
       <input
         bind:value={demographicData.age}
-        type="number"
+        type="text"
         class="w-[11rem] text-sm p-2 h-6 border border-gray-900 rounded-sm"
       />
     </div>
@@ -146,11 +151,27 @@
         class="border border-black"
       />
     </div>
+   
     <!-- Continue button -->
     <button
       on:click={clickHandler}
-      class="py-1 mb-3 border border-gray-400 text-sm rounded-md px-3 hover:bg-gray-200"
-      >Continue
+      class={`py-1 border border-gray-400 text-sm rounded-md px-3 hover:bg-gray-200 mb-3 ${
+        $loading && "bg-gray-100 px-8 "
+      }`}
+    >
+      {#if $loading}
+        <div
+          class="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] text-secondary motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          role="status"
+        >
+          <span
+            class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+            >Loading...</span
+          >
+        </div>
+      {:else}
+        Continue
+      {/if}
     </button>
   </div>
 </div>
