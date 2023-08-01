@@ -2,6 +2,7 @@
   import logo from "../assets/logo.png";
   import "@fontsource/roboto";
   import { HomeScreen } from "../constants/constants";
+  
 </script>
 
 <!--  -->

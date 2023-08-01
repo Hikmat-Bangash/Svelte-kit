@@ -1,12 +1,51 @@
 <script>
   import { currentPageNumber } from "../lib/pageSteps";
+  import { addDoc, collection } from "@firebase/firestore";
+  import { db } from "../firebase-config";
+
+  // collection reference to store data
+  const collectionRef = collection(db, "DemographicData");
+
+  // ------ form data ---------
+  const demographicData = {
+    gender: "",
+    age: 0,
+    race: "",
+    ethnicity: "",
+    feedback: "",
+  };
+
+  // store form data into firebase
+  const storeData = async () => {
+    try {
+      await addDoc(collectionRef, { data: demographicData });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   // Triggered next page if everything is working correctly
   const NextPageHandler = () => {
     currentPageNumber.set(12);
   };
 
   // Handle the click event
-  const clickHandler = () => {
+  const clickHandler = async () => {
+    if (demographicData.age < 0) {
+      window.alert("Age cannot be negative");
+      return;
+    }
+    //If the form is empty
+    if (
+      !demographicData.race &&
+      !demographicData.ethnicity &&
+      !demographicData.gender &&
+      !demographicData.feedback
+    ) {
+      window.alert("the data is empty");
+      return;
+    }
+    // If the form has filled by user then store in the firebase store
+    await storeData();
     NextPageHandler();
   };
 </script>
@@ -30,6 +69,7 @@
     <div class="center-div flex flex-col justify-center items-center gap-4">
       <h2 class="flex-wrap text-center font-bold">Your Gender:</h2>
       <input
+        bind:value={demographicData.gender}
         type="text"
         class="w-[11rem] text-sm p-2 h-6 border border-gray-900 rounded-sm"
       />
@@ -39,6 +79,7 @@
     <div class="center-div flex flex-col justify-center items-center gap-4">
       <h2 class="flex-wrap text-center font-bold">Your Age:</h2>
       <input
+        bind:value={demographicData.age}
         type="number"
         class="w-[11rem] text-sm p-2 h-6 border border-gray-900 rounded-sm"
       />
@@ -59,6 +100,7 @@
       </ul>
       <!-- input tag to enter one of the list task -->
       <input
+        bind:value={demographicData.ethnicity}
         type="text"
         class="w-[11rem] text-sm p-2 h-6 border border-gray-900 rounded-sm"
       />
@@ -82,6 +124,7 @@
       </ul>
       <!-- input tag to enter one of the list task -->
       <input
+        bind:value={demographicData.race}
         type="text"
         class="w-[11rem] text-sm p-2 h-6 border border-gray-900 rounded-sm"
       />
@@ -95,6 +138,7 @@
       <p>Feedback on this Task:</p>
       <!-- feedback text area -->
       <textarea
+        bind:value={demographicData.feedback}
         name="feedback"
         id="feedback"
         cols="40"

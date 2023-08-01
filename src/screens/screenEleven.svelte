@@ -1,20 +1,37 @@
 <script>
   import { currentPageNumber } from "../lib/pageSteps";
+  import { db } from "../firebase-config";
+  import { addDoc, collection } from "firebase/firestore";
   // temporary variables
   let storySummary = "";
   let dominantEmotion = "";
+
+  // making referernce of the   FIREBASE COLLECTION
+  const QuestionRef = collection(db, "Questions");
   // Triggered next page if everything is working correctly
   const NextPageHandler = () => {
     currentPageNumber.set(11);
   };
 
+  // create or store data into firebase
+  const createData = async (emtion, story) => {
+    await addDoc(QuestionRef, { dominantEmotion: emtion, storySummary: story })
+      .then(() => {
+        console.log("User added successfully!");
+        alert("Data stored in database");
+      })
+      .catch((error) => {
+        console.error("Error adding user: ", error);
+      });
+  };
   // Handle the click event
-  const clickHandler = () => {
+  const clickHandler = async () => {
     const trimmedStorySummary = storySummary.trim();
     const trimmedDominantEmotion = dominantEmotion.trim();
-    if (!trimmedStorySummary  || !trimmedDominantEmotion) {
+    if (!trimmedStorySummary || !trimmedDominantEmotion) {
       window.alert("Please fill the fields for better experience");
     } else {
+      await createData(trimmedDominantEmotion, trimmedStorySummary);
       NextPageHandler();
     }
   };
