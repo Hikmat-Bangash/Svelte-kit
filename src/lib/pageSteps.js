@@ -7,3 +7,4 @@ export const randomNumber = writable("");
 export const trialTimes = writable(0);
 export const videoCurrentTime = writable(0.0);
 export const EmotionScaleModel = writable(false);
+export let videoTimeStamp = writable(135.5);

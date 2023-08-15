@@ -4,9 +4,11 @@
     currentPageNumber,
     EmotionScaleModel,
     videoCurrentTime,
+    videoTimeStamp
   } from "../lib/pageSteps";
   import { onMount, onDestroy } from "svelte";
   import EmotionScale from "../components/EmotionScale.svelte";
+  import EmotionScaleTesting from "../components/EmotionScaleTesting.svelte";
 
   let videoUrl = "https://d1q27hl3unfcop.cloudfront.net/CopsDontCry.mp4";
   let videoDuration = 0;
@@ -44,7 +46,7 @@
   document.addEventListener("visibilitychange", handleVisibilityChange);
 
   // Function to handle the loadedmetadata event of the video element
-  function handleMetadataLoaded() {
+  function handleMetadataLoaded() { 
     if (videoElement) {
       videoDuration = videoElement.duration; // Get the video duration in seconds
       videoElement.currentTime = $videoCurrentTime; // Set the initial video time
@@ -61,11 +63,6 @@
       if ($videoCurrentTime == videoDuration) {
         currentPageNumber.set(10);
       }
-
-      // // ---- condition for temporary purpose to check the updated deployed --------
-      // if (videoElement.currentTime >= 10 && videoElement.currentTime <= 10.3) {
-      //   currentPageNumber.set(10);
-      // }
 
       if (
         (videoElement.currentTime >= 20 &&
@@ -84,6 +81,7 @@
           videoElement.currentTime <= 610.3 &&
           iteration == 4)
       ) {
+        videoTimeStamp.set(videoElement.currentTime);
         EmotionScaleModel.set(true);
         iteration += 1;
       }
@@ -102,7 +100,7 @@
 </script>
 
 {#if $EmotionScaleModel}
-  <EmotionScale />
+  <EmotionScaleTesting />
 {:else}
   <div
     class="container w-full h-screen flex flex-col gap-4 justify-center items-center"
@@ -111,6 +109,7 @@
       <!-- svelte-ignore a11y-media-has-caption -->
       <video
         autoplay
+        controls
         class="w-full h-full"
         on:loadedmetadata={handleMetadataLoaded}
         bind:this={videoElement}

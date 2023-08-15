@@ -1,5 +1,4 @@
 export let emotions = [
- 
  "Afraid",
   'Happy',
   'Angry',

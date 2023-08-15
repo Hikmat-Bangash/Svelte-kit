@@ -1,16 +1,17 @@
 <script>
   import { currentPageNumber } from "../lib/pageSteps";
   import { db } from "../firebase-config";
-  import { addDoc, collection } from "firebase/firestore";
+  import { addDoc, collection, doc } from "firebase/firestore";
   import { loading } from "../lib/index";
 
+  // Replace this with your actual user ID
+  const userID = "debug4540r0wK";
+  
   // temporary variables
   let storySummary = "";
   let dominantEmotion = "";
 
-  // making referernce of the   FIREBASE COLLECTION
-  const QuestionRef = collection(db, "Questions");
-  // Triggered next page if everything is working correctly
+  // Redirect to the next page if everything is working correctly
   const NextPageHandler = () => {
     currentPageNumber.set(11);
   };
@@ -19,10 +20,19 @@
   const createData = async (emtion, story) => {
     loading.set(true);
     try {
-      await addDoc(QuestionRef, {
-        dominantEmotion: emtion,
-        storySummary: story,
-      });
+      // await addDoc(QuestionRef, {
+      //   dominantEmotion: emtion,
+      //   storySummary: story,
+      // });
+
+      await addDoc(
+        collection(doc(collection(db, "users"), userID), "Questions"),
+        {
+          dominantEmotion: emtion,
+          storySummary: story,
+        }
+      );
+
       loading.set(false);
     } catch (error) {
       console.log(error);

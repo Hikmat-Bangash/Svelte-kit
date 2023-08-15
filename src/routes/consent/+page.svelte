@@ -18,6 +18,8 @@
   import ScreenTweleve from "../../screens/screenTweleve.svelte";
   import ScreenThirteen from "../../screens/screenThirteen.svelte";
   import ScreenFourteen from "../../screens/screenFourteen.svelte";
+  import EmotionScale from "../../components/EmotionScale.svelte";
+  import EmotionScaleTesting from "../../components/EmotionScaleTesting.svelte";
 
   let currentPage;
   // function definition to change the document title
@@ -33,7 +35,7 @@
 </script>
 
 {#if currentPage === 0}
- <ScreenOne />
+  <ScreenOne />
 {:else if currentPage === 1}
   <ScreenTwo />
 {:else if currentPage === 2}

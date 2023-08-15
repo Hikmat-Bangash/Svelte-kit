@@ -18,7 +18,7 @@
 </script>
 
 <div class="container w-full h-full mt-8 ml-2 md:ml-6">
-  <div class="wrapper w-full mx-3 flex gap-6 h-auto overflow-x-hidden">
+  <div class="wrapper w-full mx-3 flex gap-6 h-auto">
     <div
       class="left w-[150px] xl:h-[132px] h-[129px] border border-gray-300 p-[2px]"
     >
@@ -38,7 +38,7 @@
         {SecondPage.SUBTITLE}
       </p>
 
-      <div class="container mx-auto">
+      <div class="container mx-auto ">
         <!-- Section: Design Block -->
         <section class="mb-2">
           <div

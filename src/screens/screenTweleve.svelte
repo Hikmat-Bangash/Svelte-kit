@@ -1,10 +1,15 @@
 <script>
   import { currentPageNumber } from "../lib/pageSteps";
-  import { addDoc, collection } from "@firebase/firestore";
+  import { addDoc, collection,doc } from "@firebase/firestore";
   import { db } from "../firebase-config";
 import { loading } from "../lib/index";
-  // collection reference to store data
-  const collectionRef = collection(db, "DemographicData");
+  
+ // Replace this with your actual user ID
+  const userID = "debug4540r0wK";
+
+// collection reference to store data
+const collectionRef = collection(db, "DemographicData");
+
 
   // ------ form data ---------
   const demographicData = {
@@ -19,7 +24,15 @@ import { loading } from "../lib/index";
   const storeData = async () => {
     loading.set(true);
     try {
-      await addDoc(collectionRef, { data: demographicData });
+
+      // await addDoc(collectionRef, { data: demographicData });
+
+      await addDoc(
+        collection(doc(collection(db, "users"), userID), "DemographicData"),
+        {
+          data: demographicData
+        }
+      );
       loading.set(false);
     } catch (error) {
       console.log(error);
@@ -34,21 +47,6 @@ import { loading } from "../lib/index";
   // Handle the click event
   const clickHandler = async () => {
 
-    // if (demographicData.age < 0) {
-    //   window.alert("Age cannot be negative");
-    //   return;
-    // }
-    //If the form is empty
-    if (
-      !demographicData.race &&
-      !demographicData.ethnicity &&
-      !demographicData.gender &&
-      !demographicData.feedback &&
-      !demographicData.age
-    ) {
-      NextPageHandler();
-      return;
-    }
     // If the form has filled by user then store in the firebase store
     await storeData();
     NextPageHandler();
