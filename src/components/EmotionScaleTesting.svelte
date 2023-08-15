@@ -1,5 +1,5 @@
 <script>
-  import { EmotionScaleModel, videoTimeStamp } from "../lib/pageSteps";
+  import { EmotionScaleModel, videoTimeStamp, selectedRecords } from "../lib/pageSteps";
   import { emotions } from "../constants/emotions";
   import { db } from "../firebase-config";
   import { collection, doc, setDoc } from "firebase/firestore";
@@ -8,7 +8,7 @@
   let fillWidths = Array(emotions.length).fill(0);
   let clickedDivs = Array(emotions.length).fill(false);
   let showSelectedPoints = false;
-  let selectedRecords = []; // Array to store selected records
+  // let selectedRecords = []; // Array to store selected records
   let selectedTabs = [];
   let timestamps = "";
   // Replace this with your actual user ID
@@ -61,25 +61,27 @@
   // storing data function for to  create or store data in the firebase.
   const StoringData = async () => {
     //  getting last and latest array
-    let latestArray = selectedRecords[selectedRecords.length - 1];
+    let latestArray = $selectedRecords[$selectedRecords.length - 1];
 
     let mergedArray = emotions.map((emotion, index) => ({
       [emotion]: latestArray[index],
     }));
+    console.log(mergedArray);
+
     // Construct the document reference
-    const timestampDocRef = doc(
-      collection(doc(collection(db, "users"), userID), "TimeStamps"),
-      timestamps
-    );
-    // Use the set function to store data
-    try {
-      await setDoc(timestampDocRef, {
-        EmotionScale: mergedArray, // Add the merged array data
-      });
-      console.log("Data stored successfully");
-    } catch (error) {
-      console.error("Error storing data:", error);
-    }
+    // const timestampDocRef = doc(
+    //   collection(doc(collection(db, "users"), userID), "TimeStamps"),
+    //   timestamps
+    // );
+    // // Use the set function to store data
+    // try {
+    //   await setDoc(timestampDocRef, {
+    //     EmotionScale: mergedArray, // Add the merged array data
+    //   });
+    //   console.log("Data stored successfully");
+    // } catch (error) {
+    //   console.error("Error storing data:", error);
+    // }
 
   };
 
@@ -90,16 +92,17 @@
     );
 
     if (selectedTabs.some((width) => width > 0)) {
-      selectedRecords.push(selectedTabs);
+      $selectedRecords.push(selectedTabs);
       showSelectedPoints = true; // Show the selected points and lines
     }
 
     fillWidths = fillWidths.map(() => 0);
     clickedDivs = clickedDivs.map(() => false);
+    console.log($selectedRecords)
     // calling a method to store data in databse.
     EmotionScaleModel.set(false);
     await StoringData();
-    RemovingEvent();
+    // RemovingEvent();
   };
 
   // press space button call nextPage function and save data in database.
@@ -109,9 +112,7 @@
     }
   };
 
-  window.addEventListener("keydown", spaceKeyPressHandler);
-
- 
+  window.addEventListener("keydown", spaceKeyPressHandler); 
 </script>
 
 <div class="container w-full h-full flex justify-center items-center">
@@ -148,12 +149,12 @@
 
           <!-- JS + HTML section -->
           <!-- Display selected points and vertical lines -->
-          {#if showSelectedPoints && selectedRecords.length > 0}
-            {#if showSelectedPoints && selectedRecords[selectedRecords.length - 1][index] > 0}
+          {#if showSelectedPoints && $selectedRecords.length > 0}
+            {#if showSelectedPoints && $selectedRecords[$selectedRecords.length - 1][index] > 0}
               <div
                 class="selected-point"
                 style={`left: ${
-                  selectedRecords[selectedRecords.length - 1][index]
+                  $selectedRecords[$selectedRecords.length - 1][index]
                 }%;`}
               />
             {/if}

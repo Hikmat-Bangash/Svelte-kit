@@ -4,7 +4,8 @@
     currentPageNumber,
     EmotionScaleModel,
     videoCurrentTime,
-    videoTimeStamp
+    videoTimeStamp,
+    selectedRecords
   } from "../lib/pageSteps";
   import { onMount, onDestroy } from "svelte";
   import EmotionScale from "../components/EmotionScale.svelte";
@@ -65,11 +66,11 @@
       }
 
       if (
-        (videoElement.currentTime >= 20 &&
-          videoElement.currentTime <= 20.3 &&
+        (videoElement.currentTime >= 10 &&
+          videoElement.currentTime <= 10.3 &&
           iteration == 0) ||
-        (videoElement.currentTime >= 115 &&
-          videoElement.currentTime <= 115.3 &&
+        (videoElement.currentTime >= 15 &&
+          videoElement.currentTime <= 15.3 &&
           iteration == 1) ||
         (videoElement.currentTime >= 280 &&
           videoElement.currentTime <= 280.3 &&
@@ -89,7 +90,9 @@
   }
 
   onMount(() => {
+    console.log($selectedRecords)
     handleMetadataLoaded();
+
   });
 
   onDestroy(() => {
