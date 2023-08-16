@@ -1,5 +1,5 @@
 <script>
-  import { EmotionScaleModel, videoTimeStamp, selectedRecords } from "../lib/pageSteps";
+  import { EmotionScaleModel, videoTimeStamp, selectedRecords, showSelectedPoints } from "../lib/pageSteps";
   import { emotions } from "../constants/emotions";
   import { db } from "../firebase-config";
   import { collection, doc, setDoc } from "firebase/firestore";
@@ -7,7 +7,7 @@
 
   let fillWidths = Array(emotions.length).fill(0);
   let clickedDivs = Array(emotions.length).fill(false);
-  let showSelectedPoints = false;
+  // let showSelectedPoints = false;
   // let selectedRecords = []; // Array to store selected records
   let selectedTabs = [];
   let timestamps = "";
@@ -93,7 +93,7 @@
 
     if (selectedTabs.some((width) => width > 0)) {
       $selectedRecords.push(selectedTabs);
-      showSelectedPoints = true; // Show the selected points and lines
+      showSelectedPoints.set(true); // Show the selected points and lines
     }
 
     fillWidths = fillWidths.map(() => 0);
@@ -149,8 +149,8 @@
 
           <!-- JS + HTML section -->
           <!-- Display selected points and vertical lines -->
-          {#if showSelectedPoints && $selectedRecords.length > 0}
-            {#if showSelectedPoints && $selectedRecords[$selectedRecords.length - 1][index] > 0}
+          {#if $showSelectedPoints && $selectedRecords.length > 0}
+            {#if $showSelectedPoints && $selectedRecords[$selectedRecords.length - 1][index] > 0}
               <div
                 class="selected-point"
                 style={`left: ${
