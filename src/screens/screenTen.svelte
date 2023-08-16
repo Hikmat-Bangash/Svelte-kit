@@ -8,7 +8,6 @@
     selectedRecords
   } from "../lib/pageSteps";
   import { onMount, onDestroy } from "svelte";
-  import EmotionScale from "../components/EmotionScale.svelte";
   import EmotionScaleTesting from "../components/EmotionScaleTesting.svelte";
 
   let videoUrl = "https://d1q27hl3unfcop.cloudfront.net/CopsDontCry.mp4";
@@ -66,14 +65,14 @@
       }
 
       if (
-        (videoElement.currentTime >= 10 &&
-          videoElement.currentTime <= 10.3 &&
+        (videoElement.currentTime >= 25 &&
+          videoElement.currentTime <= 25.3 &&
           iteration == 0) ||
-        (videoElement.currentTime >= 15 &&
-          videoElement.currentTime <= 15.3 &&
+        (videoElement.currentTime >= 75 &&
+          videoElement.currentTime <= 75.3 &&
           iteration == 1) ||
-        (videoElement.currentTime >= 280 &&
-          videoElement.currentTime <= 280.3 &&
+        (videoElement.currentTime >= 180 &&
+          videoElement.currentTime <= 180.3 &&
           iteration == 2) ||
         (videoElement.currentTime >= 460 &&
           videoElement.currentTime <= 460.3 &&

@@ -5,7 +5,7 @@
   import { loading } from "../lib/index";
 
   // Replace this with your actual user ID
-  const userID = "debug4540r0wK";
+  const userID = "debug45340r0wK";
   
   // temporary variables
   let storySummary = "";
@@ -20,10 +20,6 @@
   const createData = async (emtion, story) => {
     loading.set(true);
     try {
-      // await addDoc(QuestionRef, {
-      //   dominantEmotion: emtion,
-      //   storySummary: story,
-      // });
 
       await addDoc(
         collection(doc(collection(db, "users"), userID), "Questions"),

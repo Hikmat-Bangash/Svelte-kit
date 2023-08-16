@@ -5,11 +5,7 @@
 import { loading } from "../lib/index";
   
  // Replace this with your actual user ID
-  const userID = "debug4540r0wK";
-
-// collection reference to store data
-const collectionRef = collection(db, "DemographicData");
-
+  const userID = "debug45340r0wK";
 
   // ------ form data ---------
   const demographicData = {
@@ -25,14 +21,13 @@ const collectionRef = collection(db, "DemographicData");
     loading.set(true);
     try {
 
-      // await addDoc(collectionRef, { data: demographicData });
-
       await addDoc(
         collection(doc(collection(db, "users"), userID), "DemographicData"),
         {
           data: demographicData
         }
       );
+      
       loading.set(false);
     } catch (error) {
       console.log(error);

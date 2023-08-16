@@ -1,5 +1,10 @@
 <script>
-  import { EmotionScaleModel, videoTimeStamp, selectedRecords, showSelectedPoints } from "../lib/pageSteps";
+  import {
+    EmotionScaleModel,
+    videoTimeStamp,
+    selectedRecords,
+    showSelectedPoints,
+  } from "../lib/pageSteps";
   import { emotions } from "../constants/emotions";
   import { db } from "../firebase-config";
   import { collection, doc, setDoc } from "firebase/firestore";
@@ -13,17 +18,22 @@
   let timestamps = "";
   // Replace this with your actual user ID
   const userID = "debug454340r0wK";
-// logic has used in onMount function to get and convert the videoBreakPoint into string and save it in database accordingly.
-  onMount(()=>{
-    if($videoTimeStamp > 60){
+  // logic has used in onMount function to get and convert the videoBreakPoint into string and save it in database accordingly.
+  onMount(() => {
+    if ($videoTimeStamp > 60) {
       let timeMin = $videoTimeStamp / 60;
       let temp = timeMin.toFixed(2);
-      timestamps = temp.toString();
-    }else{
-      let temp = $videoTimeStamp.toFixed(2);
-      timestamps = temp.toString();
+      let formatted = temp.replace(".", ":");
+      timestamps = formatted.toString();
+      console.log(timestamps);
+    } else {
+      let temp = $videoTimeStamp.toFixed(0);
+      let conversionToString = temp.toString();
+      // Format timestamps as "0:timestamps"
+      timestamps = "0:" + conversionToString;
+      console.log(timestamps)
     }
-  })
+  });
   // onMouseMove function to fill div with mentioned color
   function handleMouseMove(index, event) {
     if (!clickedDivs[index]) {
@@ -55,7 +65,7 @@
     clickedDivs[emotions.length] = true;
   }
   // Remove function should be called immediately when the fired space and complete the actions accordingly
- function RemovingEvent() {
+  function RemovingEvent() {
     window.removeEventListener("keydown", spaceKeyPressHandler);
   }
   // storing data function for to  create or store data in the firebase.
@@ -69,20 +79,19 @@
     console.log(mergedArray);
 
     // Construct the document reference
-    // const timestampDocRef = doc(
-    //   collection(doc(collection(db, "users"), userID), "TimeStamps"),
-    //   timestamps
-    // );
-    // // Use the set function to store data
-    // try {
-    //   await setDoc(timestampDocRef, {
-    //     EmotionScale: mergedArray, // Add the merged array data
-    //   });
-    //   console.log("Data stored successfully");
-    // } catch (error) {
-    //   console.error("Error storing data:", error);
-    // }
-
+    const timestampDocRef = doc(
+      collection(doc(collection(db, "users"), userID), "Ratings"),
+      timestamps
+    );
+    // Use the set function to store data
+    try {
+      await setDoc(timestampDocRef, {
+        EmotionScale: mergedArray, // Add the merged array data
+      });
+      console.log("Data stored successfully");
+    } catch (error) {
+      console.error("Error storing data:", error);
+    }
   };
 
   // Inside the nextPage() function:
@@ -98,7 +107,7 @@
 
     fillWidths = fillWidths.map(() => 0);
     clickedDivs = clickedDivs.map(() => false);
-    console.log($selectedRecords)
+    console.log($selectedRecords);
     // calling a method to store data in databse.
     EmotionScaleModel.set(false);
     await StoringData();
@@ -112,7 +121,7 @@
     }
   };
 
-  window.addEventListener("keydown", spaceKeyPressHandler); 
+  window.addEventListener("keydown", spaceKeyPressHandler);
 </script>
 
 <div class="container w-full h-full flex justify-center items-center">

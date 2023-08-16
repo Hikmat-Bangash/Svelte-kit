@@ -35,9 +35,7 @@
 </script>
 
 {#if currentPage === 0}
-<ScreenTen/>
-<!-- <EmotionScaleTesting/> -->
-  <!-- <ScreenOne /> -->
+  <ScreenOne />
 {:else if currentPage === 1}
   <ScreenTwo />
 {:else if currentPage === 2}
